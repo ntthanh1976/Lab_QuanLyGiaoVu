@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package view;
 
@@ -18,23 +18,17 @@ import model.SinhVien;
  *
  * @author PC_TEACHER
  */
-public class FrmSinhVienUI extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmSinhVienUI.class.getName());
+public class PanelSinhVienGUI extends javax.swing.JPanel {
 
+    /**
+     * Creates new form PanelSinhVienGUI
+     */
     private KhoaDAO khDAO = new KhoaDAO();
     private SinhVienDao svDAO = new SinhVienDao();
     private DefaultComboBoxModel<Khoa> cboKhoaModel; 
     private DefaultTableModel tblSinhVienModel; 
-    /**
-     * Creates new form FrmSinhVien
-     */
-    public FrmSinhVienUI() {       
-   
+    public PanelSinhVienGUI() {
         initComponents();
-        napDuLieuChoJCombobox();
-        napDuLieuChoJTable();
-     
     }
 
     /**
@@ -46,7 +40,6 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btgGioiTinh = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSinhVien = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -68,9 +61,6 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
         btXoa = new javax.swing.JButton();
         btLamMoi = new javax.swing.JButton();
         btThoat = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Giao diện quản lý sinh viên");
 
         tblSinhVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,10 +92,8 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
 
         jLabel4.setText("Địa chỉ");
 
-        btgGioiTinh.add(rdNam);
         rdNam.setText("Nam");
 
-        btgGioiTinh.add(rdNu);
         rdNu.setText("Nữ");
 
         jLabel5.setText("Giới tính");
@@ -201,8 +189,8 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
         btThoat.setText("Thoát");
         btThoat.addActionListener(this::btThoatActionPerformed);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -223,7 +211,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
                         .addComponent(btLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,26 +227,16 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
                     .addComponent(btThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
-        // TODO add your handling code here:
-        // int traloi = JOptionPane.showConfirmDialog(this, "Có muốn thoát chương trình không?");
-       //  if(traloi == JOptionPane.YES_OPTION)
-         {
-            //  System.exit(0); //ket thuc chuong trinh
-              dispose();// đóng cửa sổ
-         }        
-        
-    }//GEN-LAST:event_btThoatActionPerformed
+    private void tblSinhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSinhVienMouseClicked
+       
+    }//GEN-LAST:event_tblSinhVienMouseClicked
 
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
-        // TODO add your handling code here:     
+        // TODO add your handling code here:
         String maSV = txtMaSV.getText();
         String hoTen = txtHoTen.getText();
         String ngaySinhStr = txtNgaySinh.getText();
@@ -269,147 +247,68 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
             // java.util.Date ngaySinh = Date.valueOf(ngaySinhStr);
         } catch (ParseException ex) {
             System.out.println("kieu khong hop le");
-        }   
+        }
         boolean gioiTinh = rdNam.isSelected();
-        String diaChi = txtDiaChi.getText();     
+        String diaChi = txtDiaChi.getText();
         String maKhoa = ((Khoa)cboKhoa.getSelectedItem()).getMaKhoa();
-        //can kiem tra du lieu 
+        //can kiem tra du lieu
         String loi="";
         if(maSV.isEmpty())
         {
-           loi= "Chưa nhập mã sinh viên";           
+            loi= "Chưa nhập mã sinh viên";
         }
         if(hoTen.isEmpty())
         {
-           loi += "\nChưa nhập họ tên sinh viên";           
+            loi += "\nChưa nhập họ tên sinh viên";
         }
-        
+
         if(!loi.isEmpty())
         {
-           JOptionPane.showMessageDialog(this, loi);
-           return;
+            JOptionPane.showMessageDialog(this, loi);
+            return;
         }
-        
+
         //them moi
-        SinhVien sv = new SinhVien(maSV, hoTen, ngaySinh, gioiTinh, diaChi, maKhoa);       
+        SinhVien sv = new SinhVien(maSV, hoTen, ngaySinh, gioiTinh, diaChi, maKhoa);
         boolean kq = svDAO.insert(sv);
         if (kq) {
             //System.out.println("Thêm sinh viên thành công.");
             JOptionPane.showMessageDialog(this, "Thêm 1 sinh viên thành công");
             napDuLieuChoJTable();
         } else {
-           // System.out.println("Không thể thêm sinh viên.");
+            // System.out.println("Không thể thêm sinh viên.");
             JOptionPane.showMessageDialog(this, "Thêm sinh viên thất bại");
         }
     }//GEN-LAST:event_btThemActionPerformed
 
-    private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
-        // TODO add your handling code here:
-        int chiso_dong_chon = tblSinhVien.getSelectedRow();
-        if(chiso_dong_chon<0)
-        {
-           JOptionPane.showMessageDialog(this, "Chưa chọn sinh viên cần xóa");
-           return;
-        }
-        
-        String masv = tblSinhVien.getValueAt(chiso_dong_chon, 0).toString();
-        boolean kq = svDAO.delete(masv);
-        if (kq) {
-            //System.out.println("Thêm sinh viên thành công.");
-            JOptionPane.showMessageDialog(this, "Xóa 1 sinh viên thành công");
-            napDuLieuChoJTable();
-        } else {
-           // System.out.println("Không thể thêm sinh viên.");
-            JOptionPane.showMessageDialog(this, "Xóa sinh viên thất bại");
-        }
-        
-        
-    }//GEN-LAST:event_btXoaActionPerformed
-
-    private void tblSinhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSinhVienMouseClicked
-        // TODO add your handling code here:
-        int chiso_dong_chon = tblSinhVien.getSelectedRow();
-        if(chiso_dong_chon>=0)
-        {
-            String masv = tblSinhVien.getValueAt(chiso_dong_chon, 0).toString();
-            var sv = svDAO.findById(masv);//goi DAO tim sinh vien theo masv trong CSDL
-            txtMaSV.setText(sv.getMaSV());
-            txtHoTen.setText(sv.getHoTen());
-            txtNgaySinh.setText(sv.getNgaySinh().toString());    
-            if(sv.isGioiTinh())
-                rdNam.setSelected(true);
-            else
-                rdNu.setSelected(true);
-            
-            txtDiaChi.setText(sv.getDiaChi());
-            cboKhoa.setSelectedItem(new Khoa(sv.getMaKhoa()));
-            
-            ///...
-        }
-    }//GEN-LAST:event_tblSinhVienMouseClicked
-
     private void btSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaActionPerformed
         // TODO add your handling code here:
-        
-        
+
     }//GEN-LAST:event_btSuaActionPerformed
+
+    private void btXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btXoaActionPerformed
+        // TODO add your handling code here:
+       
+
+    }//GEN-LAST:event_btXoaActionPerformed
 
     private void btLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLamMoiActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btLamMoiActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+    private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
+        // TODO add your handling code here:
+        // int traloi = JOptionPane.showConfirmDialog(this, "Có muốn thoát chương trình không?");
+        //  if(traloi == JOptionPane.YES_OPTION)
+        {
+            //  System.exit(0); //ket thuc chuong trinh
+          //  dispose();// đóng cửa sổ
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmSinhVienUI().setVisible(true));
-    }
+    }//GEN-LAST:event_btThoatActionPerformed
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btLamMoi;
-    private javax.swing.JButton btSua;
-    private javax.swing.JButton btThem;
-    private javax.swing.JButton btThoat;
-    private javax.swing.JButton btXoa;
-    private javax.swing.ButtonGroup btgGioiTinh;
-    private javax.swing.JComboBox cboKhoa;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton rdNam;
-    private javax.swing.JRadioButton rdNu;
-    private javax.swing.JTable tblSinhVien;
-    private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txtHoTen;
-    private javax.swing.JTextField txtMaSV;
-    private javax.swing.JTextField txtNgaySinh;
-    // End of variables declaration//GEN-END:variables
-
-    private void napDuLieuChoJCombobox() {
+     private void napDuLieuChoJCombobox() {
          
         var dsKhoa = khDAO.findAll(); //doc cac khoa tu CSDL voi DAO 
         cboKhoaModel  = new DefaultComboBoxModel<>();
@@ -433,4 +332,28 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
          }         
          tblSinhVien.setModel(tblSinhVienModel);        
     }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btLamMoi;
+    private javax.swing.JButton btSua;
+    private javax.swing.JButton btThem;
+    private javax.swing.JButton btThoat;
+    private javax.swing.JButton btXoa;
+    private javax.swing.JComboBox cboKhoa;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton rdNam;
+    private javax.swing.JRadioButton rdNu;
+    private javax.swing.JTable tblSinhVien;
+    private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtHoTen;
+    private javax.swing.JTextField txtMaSV;
+    private javax.swing.JTextField txtNgaySinh;
+    // End of variables declaration//GEN-END:variables
 }

@@ -11,6 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -34,11 +37,16 @@ public class FrmQLSinhVien extends JFrame  {
     private JButton btThem;
     private JButton btXoa;
     private JButton btNapDuLieu;
+    private JMenuBar mBar;
+    private JMenu menuFile, menuEdit;
+    private JMenuItem itemThoat, itemThem;
     
     DefaultTableModel model;
     SinhVienDao svDAO = new SinhVienDao();
     
     int stt=0;
+    
+    
     public FrmQLSinhVien()
     {
        taoGiaoDien();
@@ -74,7 +82,19 @@ public class FrmQLSinhVien extends JFrame  {
          pNhapLieu.add(new Label("Họ tên sinh viên"));
          pNhapLieu.add(txtHoten = new JTextField(20));
          
-         add(pNhapLieu, BorderLayout.NORTH);        
+         add(pNhapLieu, BorderLayout.NORTH);     
+         
+         //tao thuc don
+         mBar = new JMenuBar();
+         //gắn menu vào thuc don
+         mBar.add(menuFile = new JMenu("File"));
+         mBar.add(menuEdit = new JMenu("Edit"));
+         
+         //gan menuitem vao menu
+         menuFile.add(itemThoat = new JMenuItem("Thoát"));
+         menuEdit.add(itemThem = new JMenuItem("Thêm"));
+         
+         setJMenuBar(mBar);
         
     }
     
