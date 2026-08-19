@@ -54,7 +54,6 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
         txtMaSV = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtHoTen = new javax.swing.JTextField();
-        txtNgaySinh = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtDiaChi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -63,11 +62,13 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cboKhoa = new javax.swing.JComboBox();
+        jdcNgaySinh = new com.toedter.calendar.JDateChooser();
         btThem = new javax.swing.JButton();
         btSua = new javax.swing.JButton();
         btXoa = new javax.swing.JButton();
         btLamMoi = new javax.swing.JButton();
-        btThoat = new javax.swing.JButton();
+        txtKeyword = new javax.swing.JTextField();
+        btTim = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Giao diện quản lý sinh viên");
@@ -96,8 +97,6 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
 
         jLabel2.setText("Họ tên ");
 
-        txtNgaySinh.setToolTipText("dd/MM/yyyy");
-
         jLabel3.setText("Ngày sinh");
 
         jLabel4.setText("Địa chỉ");
@@ -118,7 +117,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -126,7 +125,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jdcNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -144,7 +143,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(rdNu))
                     .addComponent(cboKhoa, 0, 247, Short.MAX_VALUE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,8 +159,8 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jdcNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -197,33 +196,32 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
         btLamMoi.setText("Làm mới");
         btLamMoi.addActionListener(this::btLamMoiActionPerformed);
 
-        btThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
-        btThoat.setText("Thoát");
-        btThoat.addActionListener(this::btThoatActionPerformed);
+        btTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
+        btTim.setText("Tìm");
+        btTim.addActionListener(this::btTimActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(btThem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btSua, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(btThem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSua, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btLamMoi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btTim, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,40 +234,22 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
                     .addComponent(btSua, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(btTim, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThoatActionPerformed
-        // TODO add your handling code here:
-        // int traloi = JOptionPane.showConfirmDialog(this, "Có muốn thoát chương trình không?");
-       //  if(traloi == JOptionPane.YES_OPTION)
-         {
-            //  System.exit(0); //ket thuc chuong trinh
-              dispose();// đóng cửa sổ
-         }        
-        
-    }//GEN-LAST:event_btThoatActionPerformed
-
     private void btThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemActionPerformed
         // TODO add your handling code here:     
         String maSV = txtMaSV.getText();
-        String hoTen = txtHoTen.getText();
-        String ngaySinhStr = txtNgaySinh.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        java.util.Date ngaySinh= null;
-        try {
-            ngaySinh = sdf.parse(ngaySinhStr);
-            // java.util.Date ngaySinh = Date.valueOf(ngaySinhStr);
-        } catch (ParseException ex) {
-            System.out.println("kieu khong hop le");
-        }   
+        String hoTen = txtHoTen.getText();        
+        java.util.Date ngaySinh= jdcNgaySinh.getDate();       
         boolean gioiTinh = rdNam.isSelected();
         String diaChi = txtDiaChi.getText();     
         String maKhoa = ((Khoa)cboKhoa.getSelectedItem()).getMaKhoa();
@@ -297,6 +277,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
             //System.out.println("Thêm sinh viên thành công.");
             JOptionPane.showMessageDialog(this, "Thêm 1 sinh viên thành công");
             napDuLieuChoJTable();
+            resetForm();
         } else {
            // System.out.println("Không thể thêm sinh viên.");
             JOptionPane.showMessageDialog(this, "Thêm sinh viên thất bại");
@@ -318,6 +299,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
             //System.out.println("Thêm sinh viên thành công.");
             JOptionPane.showMessageDialog(this, "Xóa 1 sinh viên thành công");
             napDuLieuChoJTable();
+            resetForm();
         } else {
            // System.out.println("Không thể thêm sinh viên.");
             JOptionPane.showMessageDialog(this, "Xóa sinh viên thất bại");
@@ -335,7 +317,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
             var sv = svDAO.findById(masv);//goi DAO tim sinh vien theo masv trong CSDL
             txtMaSV.setText(sv.getMaSV());
             txtHoTen.setText(sv.getHoTen());
-            txtNgaySinh.setText(sv.getNgaySinh().toString());    
+            jdcNgaySinh.setDate(sv.getNgaySinh());
             if(sv.isGioiTinh())
                 rdNam.setSelected(true);
             else
@@ -356,8 +338,12 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
 
     private void btLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLamMoiActionPerformed
         // TODO add your handling code here:
-        
+        resetForm();
     }//GEN-LAST:event_btLamMoiActionPerformed
+
+    private void btTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimActionPerformed
+          
+    }//GEN-LAST:event_btTimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,7 +374,7 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
     private javax.swing.JButton btLamMoi;
     private javax.swing.JButton btSua;
     private javax.swing.JButton btThem;
-    private javax.swing.JButton btThoat;
+    private javax.swing.JButton btTim;
     private javax.swing.JButton btXoa;
     private javax.swing.ButtonGroup btgGioiTinh;
     private javax.swing.JComboBox cboKhoa;
@@ -400,13 +386,14 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jdcNgaySinh;
     private javax.swing.JRadioButton rdNam;
     private javax.swing.JRadioButton rdNu;
     private javax.swing.JTable tblSinhVien;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtHoTen;
+    private javax.swing.JTextField txtKeyword;
     private javax.swing.JTextField txtMaSV;
-    private javax.swing.JTextField txtNgaySinh;
     // End of variables declaration//GEN-END:variables
 
     private void napDuLieuChoJCombobox() {
@@ -432,5 +419,14 @@ public class FrmSinhVienUI extends javax.swing.JFrame {
                sv.getNgaySinh(),sv.isGioiTinh()?"Nam":"Nữ",sv.getDiaChi(), sv.getMaKhoa()});
          }         
          tblSinhVien.setModel(tblSinhVienModel);        
+    }
+
+    private void resetForm() {
+         txtMaSV.setText("");
+         txtHoTen.setText("");
+         jdcNgaySinh.setDate(null);
+         cboKhoa.setSelectedIndex(0);
+         rdNam.setSelected(true);
+         txtDiaChi.setText("");
     }
 }

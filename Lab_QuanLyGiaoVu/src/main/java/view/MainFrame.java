@@ -81,6 +81,7 @@ public class MainFrame extends javax.swing.JFrame {
         itemMonhoc.addActionListener(this::itemMonhocActionPerformed);
         menuDanhMuc.add(itemMonhoc);
 
+        itemSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/graduating-student.png"))); // NOI18N
         itemSinhVien.setText("Sinh viên");
         itemSinhVien.addActionListener(this::itemSinhVienActionPerformed);
         menuDanhMuc.add(itemSinhVien);

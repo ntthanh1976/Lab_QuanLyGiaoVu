@@ -128,7 +128,7 @@ public class SinhVienDao {
         try (Connection conn = DBConection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             
-            ps.setString(1, "%" + name + "%");
+            ps.setString(1, "%" + name + "%");          
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     String maSV = rs.getString("MaSV");
